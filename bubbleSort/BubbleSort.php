@@ -46,12 +46,15 @@ class BubbleSort
 
     public function run(){
         $this->show();
+        $timeBefore=time();
         $this->sort();
+        $timeAfter=time();
+        echo '执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
     }
 
 }
-for($i=0;$i<100;$i++){
-    $arr[$i]=rand(0,1000);
+for($i=0;$i<1000;$i++){
+    $arr[$i]=rand(0,999999);
 }
 
 $a=new BubbleSort($arr);
