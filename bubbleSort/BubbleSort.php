@@ -18,7 +18,7 @@ class BubbleSort
             exit;
         }
     }
-    private function sort(){
+    private function sort($show=true){
         $temp=0;
         $sym=0;
         for($i=0;$i<sizeof(self::$arr)-1;$i++){
@@ -32,30 +32,32 @@ class BubbleSort
             }
             if($sym==0) break;
             else $sym=0;
-            $this->show();
+            $this->show($show);
         }
     }
 
-    private function show(){
-        for($i=0;$i<sizeof(self::$arr);$i++){
-            echo self::$arr[$i].'  ';
+    private function show($show=true){
+        if($show==true) {
+            for ($i = 0; $i < sizeof(self::$arr); $i++) {
+                echo self::$arr[$i] . '  ';
+            }
+            echo PHP_EOL;
+            echo PHP_EOL;
         }
-        echo PHP_EOL;
-        echo PHP_EOL;
     }
 
-    public function run(){
-        $this->show();
+    public function run($show=true){
+        $this->show($show);
         $timeBefore=time();
-        $this->sort();
+        $this->sort($show);
         $timeAfter=time();
         echo '执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
     }
 
 }
-for($i=0;$i<1000;$i++){
+for($i=0;$i<8000;$i++){
     $arr[$i]=rand(0,999999);
 }
 
 $a=new BubbleSort($arr);
-$a->run();
+$a->run(false);
