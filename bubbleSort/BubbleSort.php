@@ -41,6 +41,7 @@ class BubbleSort
             echo self::$arr[$i].'  ';
         }
         echo PHP_EOL;
+        echo PHP_EOL;
     }
 
     public function run(){
@@ -49,6 +50,9 @@ class BubbleSort
     }
 
 }
+for($i=0;$i<100;$i++){
+    $arr[$i]=rand(0,1000);
+}
 
-$a=new BubbleSort(['3','9','-1','10','20']);
+$a=new BubbleSort($arr);
 $a->run();
