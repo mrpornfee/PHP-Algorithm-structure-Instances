@@ -49,9 +49,9 @@ class BubbleSort
 
     public function run($show=true){
         $this->show($show);
-        $timeBefore=time();
+        $timeBefore=microtime();
         $this->sort($show);
-        $timeAfter=time();
+        $timeAfter=microtime();
         echo '执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
     }
 
