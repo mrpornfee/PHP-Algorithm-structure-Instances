@@ -53,7 +53,7 @@ class BubbleSort
         $timeBefore=$this->getTime();
         $this->sort($show);
         $timeAfter=$this->getTime();
-        echo '冒泡执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
+        echo '冒泡排序执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
     }
 
 }
