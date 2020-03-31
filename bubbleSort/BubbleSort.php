@@ -5,6 +5,7 @@
  * Date: 2020/3/31
  * Time: 10:16
  */
+namespace bubbleSort;
 
 class BubbleSort
 {
@@ -55,9 +56,4 @@ class BubbleSort
     }
 
 }
-for($i=0;$i<8000;$i++){
-    $arr[$i]=rand(0,999999);
-}
 
-$a=new BubbleSort($arr);
-$a->run(false);

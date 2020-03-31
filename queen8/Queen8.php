@@ -1,4 +1,6 @@
 <?php
+namespace queen8;
+
 class Queen8{
 
 
@@ -56,6 +58,3 @@ class Queen8{
       echo PHP_EOL;
   }
 }
-
-$test=new Queen8();
-$test->main();
