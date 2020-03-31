@@ -18,7 +18,20 @@ class ShellSort
     }
 
     private function sort($show){
+            for($gap=(int)(sizeof(self::$arr)/2);$gap>0;$gap=(int)($gap/2)){
+                echo "步长为{$gap}的排序过程：".PHP_EOL;
+                for($i=$gap;$i<sizeof(self::$arr);$i++){
+                    $temp=self::$arr[$i];
+                    $index=$i-$gap;
+                    while($index>=0&&$temp<self::$arr[$index]){
+                        self::$arr[$index+$gap]=self::$arr[$index];
+                        $index -=$gap;
+                    }
+                    self::$arr[$index+$gap]=$temp;
+                    $this->show($show);
+                }
 
+            }
 
     }
 
