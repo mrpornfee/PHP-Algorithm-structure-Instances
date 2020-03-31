@@ -9,6 +9,8 @@ namespace selectionSort;
 
 class SelectionSort
 {
+    use \tools\microtimeToFloat;
+
     private static  $arr;
 
     public function __construct($arr)
@@ -22,10 +24,10 @@ class SelectionSort
 
     public function run($show=true){
         $this->show($show);
-        $timeBefore=microtime();
+        $timeBefore=$this->getTime();
         $this->sort($show);
-        $timeAfter=microtime();
-        echo '执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
+        $timeAfter=$this->getTime();
+        echo '选择排序执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
     }
 
     private function sort($show)
@@ -39,8 +41,10 @@ class SelectionSort
                     $minIndex = $j;
                 }
             }
-            self::$arr[$minIndex] = self::$arr[$i];
-            self::$arr[$i] = $min;
+            if($minIndex!=$i) {
+                self::$arr[$minIndex] = self::$arr[$i];
+                self::$arr[$i] = $min;
+            }
             $this->show($show);
         }
 

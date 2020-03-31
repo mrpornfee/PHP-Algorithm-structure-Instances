@@ -9,6 +9,8 @@ namespace bubbleSort;
 
 class BubbleSort
 {
+    use \tools\microtimeToFloat;
+
     private  static  $arr;
 
     public function __construct($arr)
@@ -20,7 +22,6 @@ class BubbleSort
         }
     }
     private function sort($show=true){
-        $temp=0;
         $sym=0;
         for($i=0;$i<sizeof(self::$arr)-1;$i++){
             for($j=0;$j<sizeof(self::$arr)-$i-1;$j++){
@@ -49,10 +50,10 @@ class BubbleSort
 
     public function run($show=true){
         $this->show($show);
-        $timeBefore=microtime();
+        $timeBefore=$this->getTime();
         $this->sort($show);
-        $timeAfter=microtime();
-        echo '执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
+        $timeAfter=$this->getTime();
+        echo '冒泡执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
     }
 
 }
