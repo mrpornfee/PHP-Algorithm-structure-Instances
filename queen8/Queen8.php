@@ -1,6 +1,6 @@
 <?php
 namespace queen8;
-
+//八皇后递归
 class Queen8{
 
 

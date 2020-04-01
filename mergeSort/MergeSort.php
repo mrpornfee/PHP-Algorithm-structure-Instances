@@ -1,8 +1,8 @@
 <?php
 
-namespace insertSort;
-//插入排序
-class InsertSort
+namespace mergeSort;
+//归并排序
+class MergeSort
 {
     use \tools\microtimeToFloat;
 
@@ -18,16 +18,7 @@ class InsertSort
     }
 
     private function sort($show){
-        for($i=1;$i<sizeof(self::$arr);$i++){
-            $insertVal=self::$arr[$i];
-            $insertIndex=$i-1;
-            while($insertIndex>=0&&$insertVal<self::$arr[$insertIndex]){
-                self::$arr[$insertIndex+1]=self::$arr[$insertIndex];
-               $insertIndex--;
-            }
-            self::$arr[$insertIndex+1]=$insertVal;
-            $this->show($show);
-        }
+
 
     }
 
@@ -46,7 +37,7 @@ class InsertSort
         $timeBefore=$this->getTime();
         $this->sort($show);
         $timeAfter=$this->getTime();
-        echo '插入排序执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
+        echo '归并排序执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
     }
 
 }
