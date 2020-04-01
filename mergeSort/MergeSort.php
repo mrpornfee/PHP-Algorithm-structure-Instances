@@ -17,9 +17,45 @@ class MergeSort
         }
     }
 
-    private function sort($show){
+    private function sort($left,$right,$show){
+        if($left<$right){
+            $mid=(int)(($left+$right)/2);
+            $this->sort($left,$mid,$show);
+            $this->sort($mid+1,$right,$show);
+           $this->merge($left,$right, $mid,$show);
+            $this->show($show);
+        }
+
+    }
 
 
+    private function merge($left,$right, $mid,$show){
+        $i=$left;
+        $j=$mid+1;
+        while ($i<=$mid&&$j<=$right){
+            if(self::$arr[$i]>self::$arr[$j]){
+                $temp[]=self::$arr[$j];
+                $j++;
+            }else{
+                $temp[]=self::$arr[$i];
+                $i++;
+            }
+        }
+        while($i<=$mid){
+            $temp[]=self::$arr[$i];
+            $i++;
+        }
+        while($j<=$right){
+            $temp[]=self::$arr[$j];
+            $j++;
+        }
+        $t=0;
+        $tmpleft=$left;
+        while($tmpleft<=$right){
+            self::$arr[$tmpleft]=$temp[$t];
+            $tmpleft++;
+            $t++;
+        }
     }
 
     private function show($show=true){
@@ -35,7 +71,7 @@ class MergeSort
     public function run($show=true){
         $this->show($show);
         $timeBefore=$this->getTime();
-        $this->sort($show);
+        $this->sort(0,sizeof(self::$arr)-1,$show);
         $timeAfter=$this->getTime();
         echo '归并排序执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
     }
