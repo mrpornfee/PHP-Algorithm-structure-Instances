@@ -1,7 +1,7 @@
 <?php
 
 namespace quickSort;
-
+//快速排序
 class QuickSort
 {
     use \tools\microtimeToFloat;

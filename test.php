@@ -22,14 +22,14 @@ $instance->main();
 $method=$class->getMethod('main');
 $method->invoke($instance);*/
 
-
-/*$test1=new BubbleSort($arr);
+/*
+$test1=new BubbleSort($arr);
 $test1->run($button);
 $test2=new SelectionSort($arr);
 $test2->run($button);
 $test3=new InsertSort($arr);
 $test3->run($button);
 $test4=new ShellSort($arr);
-$test4->run($button);*/
+$test4->run($button);
 $test5=new QuickSort($arr);
-$test5->run($button);
+$test5->run($button);*/
