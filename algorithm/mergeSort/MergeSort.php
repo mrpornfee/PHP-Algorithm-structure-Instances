@@ -1,6 +1,6 @@
 <?php
 
-namespace mergeSort;
+namespace algorithm\mergeSort;
 //归并排序
 class MergeSort
 {

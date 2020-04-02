@@ -1,5 +1,5 @@
 <?php
-namespace queen8;
+namespace algorithm\queen8;
 //八皇后递归
 class Queen8{
 
@@ -13,11 +13,16 @@ class Queen8{
 
   public function __construct($n=8)
   {
+      if(is_numeric($n)&&is_int($n)&&$n>0)
       self::$max=$n;
+      else {
+            echo '参数错误,需为正整数';
+            exit;
+      }
   }
     //入口
-    public function main($n=0){
-        $this->check($n);
+    public function run($show=true){
+        $this->check(0);
         echo '共计:'.self::$clock.'个结果'.PHP_EOL;
         return 0;
     }

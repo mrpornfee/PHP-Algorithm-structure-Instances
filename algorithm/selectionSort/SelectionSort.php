@@ -5,7 +5,7 @@
  * Date: 2020/3/31
  * Time: 13:16
  */
-namespace selectionSort;
+namespace algorithm\selectionSort;
 //选择排序
 class SelectionSort
 {

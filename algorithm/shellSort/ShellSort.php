@@ -1,6 +1,6 @@
 <?php
 
-namespace shellSort;
+namespace algorithm\shellSort;
 //希尔排序
 class ShellSort
 {
