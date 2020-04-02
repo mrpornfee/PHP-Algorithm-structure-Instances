@@ -5,7 +5,7 @@
  * Date: 2020/3/31
  * Time: 10:16
  */
-namespace bubbleSort;
+namespace algorithm\bubbleSort;
 //冒泡排序
 class BubbleSort
 {

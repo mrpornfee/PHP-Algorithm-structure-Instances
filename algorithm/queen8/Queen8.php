@@ -1,5 +1,5 @@
 <?php
-namespace queen8;
+namespace algorithm\queen8;
 //八皇后递归
 class Queen8{
 
@@ -16,7 +16,7 @@ class Queen8{
       self::$max=$n;
   }
     //入口
-    public function main($n=0){
+    public function run($n=0){
         $this->check($n);
         echo '共计:'.self::$clock.'个结果'.PHP_EOL;
         return 0;

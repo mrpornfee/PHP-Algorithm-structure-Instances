@@ -1,6 +1,6 @@
 <?php
 
-namespace quickSort;
+namespace algorithm\quickSort;
 //快速排序
 class QuickSort
 {
