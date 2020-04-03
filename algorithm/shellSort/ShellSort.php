@@ -51,6 +51,7 @@ class ShellSort
         $this->sort($show);
         $timeAfter=$this->getTime();
         echo '希尔排序执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
+        return self::$arr;
     }
 
 }

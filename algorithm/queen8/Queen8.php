@@ -21,7 +21,7 @@ class Queen8{
       }
   }
     //入口
-    public function run($show=true){
+    public function run(){
         $this->check(0);
         echo '共计:'.self::$clock.'个结果'.PHP_EOL;
         return 0;
