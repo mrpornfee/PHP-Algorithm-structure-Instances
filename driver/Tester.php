@@ -133,15 +133,14 @@ class Tester
     /**运行对象实列
      * 对实列中的数组进行查找
      * @param $class //数组或字符串，algorithm下的相对路径
-     * @param $show  //是否显示过程 1或者true 显示 0或false 不显示
      * @return bool
      */
-    public static function find($class){
+    public static function find($class,$n){
         if(self::$classArr==null) return false;
         if(is_string($class)){
             $class=self::$path.$class;
             if(array_key_exists($class,self::$classArr)){
-                $res=self::$classArr[$class]->run();
+                $res=self::$classArr[$class]->run($n);
                 return $res;
             }
             return false;
@@ -154,7 +153,7 @@ class Tester
                     return false;
             }
             for($i=0;$i<$t;$i++){
-                self::$classArr[$class[$i]]->run();
+                self::$classArr[$class[$i]]->run($n);
             }
             return true;
         }

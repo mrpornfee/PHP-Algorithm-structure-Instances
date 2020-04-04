@@ -32,8 +32,34 @@ class BinarySearch
         return true;
     }
 
-    private function find(){
-
+    private function find($low,$high,$n){
+        $mid=(int)(($low+$high)/2);
+        if($low>$high){
+            echo '未找到相应数据'.PHP_EOL;
+            return -1;
+        }
+        if(self::$arr[$mid]==$n){
+            $temp=$mid;
+            $res[]=$mid;
+            while($temp>=$low&&$temp<=$high&&self::$arr[$temp-1]==self::$arr[$mid]){
+                $res[]=$temp-1;
+                $temp--;
+            }
+             $temp=$mid;
+            while($temp>=$low&&$temp<=$high&&self::$arr[$temp+1]==self::$arr[$mid]){
+                $res[]=$temp+1;
+                $temp++;
+            }
+            self::$arr=[];
+            self::$arr=$res;
+            return 1;
+        }
+        if(self::$arr[$mid]<$n){
+            $this->find($mid+1,$high,$n);
+        }
+        if(self::$arr[$mid]>$n){
+            $this->find($low,$mid-1,$n);
+        }
     }
 
     private function show(){
@@ -46,11 +72,11 @@ class BinarySearch
 
     }
 
-    public function run(){
+    public function run($n){
         $this->show();
         if(!$this->judge()) return '非有序数组无法查找---二分查找';
         $timeBefore=$this->getTime();
-        $this->find();
+        $this->find(0,sizeof(self::$arr)-1,$n);
         $timeAfter=$this->getTime();
         echo '二分查找执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
         return self::$arr;
