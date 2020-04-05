@@ -21,7 +21,7 @@ class Tester
      * @param $arr
      * @return bool
      */
-    public static function bind($class,$arr)
+    public static function bind($class,$arr=[])
     {
         if (is_string($class)) {
                 $class=self::$path.$class;
@@ -105,12 +105,12 @@ class Tester
      * @param $class //数组或字符串，algorithm下的相对路径
      * @return bool
      */
-    public static function run($class){
+    public static function run($class,$size=0,array $arr=[]){
         if(self::$classArr==null) return false;
         if(is_string($class)){
             $class=self::$path.$class;
             if(array_key_exists($class,self::$classArr)){
-                self::$classArr[$class]->run();
+                self::$classArr[$class]->run($size,$arr);
                 return true;
             }
             return false;
