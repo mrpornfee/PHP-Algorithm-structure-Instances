@@ -9,14 +9,14 @@ $method=$class->getMethod('main');
 $method->invoke($instance);*/
 //========================================================================
 
-for($i=0;$i<7;$i++){
-    $arr[$i]=rand(0,9);
+for($i=0;$i<999;$i++){
+    $arr[$i]=$i;
 }
 $button=1;     //1：显示过程 0：否
 
-Tester::bind('radixSort\RadixSort',$arr);
-$a=Tester::sort('radixSort\RadixSort',$button);
-Tester::bind('binarySearch\BinarySearch',$a);
-$res=Tester::find('binarySearch\BinarySearch',5);
-var_dump($res);
+Tester::bind(['insertValueSearch\InsertValueSearch','binarySearch\BinarySearch'],$arr);
+$res1=Tester::find('binarySearch\BinarySearch',0);
+var_dump($res1);
+$res2=Tester::find('insertValueSearch\InsertValueSearch',0);
+var_dump($res2);
 

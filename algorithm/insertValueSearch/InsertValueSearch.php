@@ -1,15 +1,14 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: 93709
- * Date: 2020/4/3
- * Time: 13:12
+ * User: 马鹏飞
+ * Date: 2020/4/5
+ * Time: 16:01
  */
-namespace algorithm\binarySearch;
-
-//二分查找算法
-class BinarySearch
+namespace algorithm\insertValueSearch;
+class InsertValueSearch
 {
+
     use \tools\microtimeToFloat;
 
     private static  $arr;
@@ -33,7 +32,8 @@ class BinarySearch
     }
 
     private function find($low,$high,$n){
-        $mid=(int)(($low+$high)/2);
+        $mid=(int)(($n-self::$arr[$low])/(self::$arr[$high]-self::$arr[$low])*($high-$low)+$low);
+
         if($low>$high){
             echo '未找到相应数据'.PHP_EOL;
             return -1;
@@ -45,7 +45,7 @@ class BinarySearch
                 $res[]=$temp-1;
                 $temp--;
             }
-             $temp=$mid;
+            $temp=$mid;
             while($temp>=$low&&$temp<=$high&&self::$arr[$temp+1]===self::$arr[$mid]){
                 $res[]=$temp+1;
                 $temp++;
@@ -64,11 +64,11 @@ class BinarySearch
 
     private function show(){
 
-            for ($i = 0; $i < sizeof(self::$arr); $i++) {
-                echo self::$arr[$i] . '  ';
-            }
-            echo PHP_EOL;
-            echo PHP_EOL;
+        for ($i = 0; $i < sizeof(self::$arr); $i++) {
+            echo self::$arr[$i] . '  ';
+        }
+        echo PHP_EOL;
+        echo PHP_EOL;
 
     }
 
@@ -78,8 +78,7 @@ class BinarySearch
         $timeBefore=$this->getTime();
         $this->find(0,sizeof(self::$arr)-1,$n);
         $timeAfter=$this->getTime();
-        echo '二分查找执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
+        echo '插值查找执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
         return self::$arr;
     }
-
 }
