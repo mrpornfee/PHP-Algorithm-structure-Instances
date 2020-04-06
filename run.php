@@ -14,7 +14,7 @@ for($i=0;$i<999;$i++){
 }
 $button=1;     //1：显示过程 0：否
 
-Tester::bind('hashtable\HashTableDemo',10);
-Tester::run('hashtable\HashTableDemo',[[1,'张三'],[11,'叮当'],[21,'蔡']]);
-Tester::find('hashtable\HashTableDemo',[1,21]);
+Tester::bind('tree\BinaryTreeDemo');
+Tester::run('tree\BinaryTreeDemo',[[1,'张三'],[11,'叮当'],[21,'蔡'],[15,'敖灿'],[17,'阿达']],1);
+
 

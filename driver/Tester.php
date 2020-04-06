@@ -105,12 +105,12 @@ class Tester
      * @param $class //数组或字符串，algorithm下的相对路径
      * @return bool
      */
-    public static function run($class,$arr){
+    public static function run($class,$arr,$type=1){
         if(self::$classArr==null) return false;
         if(is_string($class)){
             $class=self::$path.$class;
             if(array_key_exists($class,self::$classArr)){
-                self::$classArr[$class]->run($arr);
+                self::$classArr[$class]->run($arr,$type);
                 return true;
             }
             return false;
@@ -135,12 +135,12 @@ class Tester
      * @param $class //数组或字符串，algorithm下的相对路径
      * @return bool
      */
-    public static function find($class,$n){
+    public static function find($class,$n,$type=1){
         if(self::$classArr==null) return false;
         if(is_string($class)){
             $class=self::$path.$class;
             if(array_key_exists($class,self::$classArr)){
-                $res=self::$classArr[$class]->find($n);
+                $res=self::$classArr[$class]->find($n,$type);
                 return $res;
             }
             return false;
