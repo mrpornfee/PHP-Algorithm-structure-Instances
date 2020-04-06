@@ -16,4 +16,5 @@ $button=1;     //1：显示过程 0：否
 
 Tester::bind('hashtable\HashTableDemo',10);
 Tester::run('hashtable\HashTableDemo',[[1,'张三'],[11,'叮当'],[21,'蔡']]);
+Tester::find('hashtable\HashTableDemo',[1,21]);
 

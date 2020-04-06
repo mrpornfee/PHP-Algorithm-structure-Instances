@@ -31,7 +31,7 @@ class InsertValueSearch
         return true;
     }
 
-    private function find($low,$high,$n){
+    private function work($low,$high,$n){
         $mid=(int)(($n-self::$arr[$low])/(self::$arr[$high]-self::$arr[$low])*($high-$low)+$low);
 
         if($low>$high){
@@ -55,10 +55,10 @@ class InsertValueSearch
             return 1;
         }
         if(self::$arr[$mid]<$n){
-            $this->find($mid+1,$high,$n);
+            $this->work($mid+1,$high,$n);
         }
         if(self::$arr[$mid]>$n){
-            $this->find($low,$mid-1,$n);
+            $this->work($low,$mid-1,$n);
         }
     }
 
@@ -72,11 +72,11 @@ class InsertValueSearch
 
     }
 
-    public function run($n){
+    public function find($n){
         $this->show();
         if(!$this->judge()) return '非有序数组无法查找---二分查找';
         $timeBefore=$this->getTime();
-        $this->find(0,sizeof(self::$arr)-1,$n);
+        $this->work(0,sizeof(self::$arr)-1,$n);
         $timeAfter=$this->getTime();
         echo '插值查找执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
         return self::$arr;

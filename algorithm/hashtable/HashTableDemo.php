@@ -9,7 +9,9 @@ namespace algorithm\hashtable;
 
 class HashTableDemo
 {
-    private $size;
+    private static $size;
+
+    private static  $hashtable;
 
     public function __construct($size)
     {
@@ -17,21 +19,27 @@ class HashTableDemo
             echo '初始化参数非法'.PHP_EOL;
             exit;
         }
-        $this->size=$size;
+        self::$size=$size;
     }
 
-
     public function run(array $arr){
-        $hash=new HashTable($this->size);
+        if(!is_array($arr)) {echo '参数必须为数组';exit;}
+        self::$hashtable=new HashTable(self::$size);
         for($i=0;$i<sizeof($arr);$i++){
             if(sizeof($arr[$i])!=2){
                 echo '参数异常,需为二维数组,[[$id,$name],[$id2,$name2]......]'.PHP_EOL;
                 exit;
             }
             $obj=new Emp($arr[$i][0],$arr[$i][1]);
-            $hash->add($obj);
+            self::$hashtable->add($obj);
         }
-        $hash->select();
+        self::$hashtable->select();
+    }
+
+    public function find(array $id){
+        for($i=0;$i<sizeof($id);$i++) {
+            self::$hashtable->findEmpById($id[$i]);
+        }
     }
 
 }
@@ -59,6 +67,17 @@ class HashTable{
             echo "当前为{$i}号链表：".PHP_EOL;
             $this->EmpLinkListArr[$i]->select();
         }
+    }
+
+    public function findEmpById($id){
+        $empLinkedListNO=$this->hashFun($id);
+        $emp=$this->EmpLinkListArr[$empLinkedListNO]->findEmpById($id);
+        if($emp!=null){
+            echo "在第{$empLinkedListNO}条链表找到id为{$id}的雇员,雇员名字为{$emp->name}。".PHP_EOL;
+        }else{
+            echo "未找到id为{$id}的雇员".PHP_EOL;
+        }
+
     }
 
     //编写一个函数，使用一个简单取模法
@@ -102,6 +121,25 @@ class EmpLinkedList{
             $cur=$cur->next;
         }
     }
+
+    public function findEmpById($id){
+        if($this->head==null){
+            return null;
+        }
+        $cur=$this->head;
+        while (1){
+            if($cur->id==$id){
+                return $cur;
+            }
+            if($cur->next!=null){
+                $cur=$cur->next;
+            }else{
+                return null;
+            }
+
+        }
+    }
+
 }
 //表示一个雇员
 class Emp{
