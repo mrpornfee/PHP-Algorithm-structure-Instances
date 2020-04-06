@@ -23,7 +23,7 @@ class HashTableDemo
 
     public function run(array $arr){
         $hash=new HashTable($this->size);
-        for($i=0;$i<sizeof($arr)-1;$i++){
+        for($i=0;$i<sizeof($arr);$i++){
             if(sizeof($arr[$i])!=2){
                 echo '参数异常,需为二维数组,[[$id,$name],[$id2,$name2]......]'.PHP_EOL;
                 exit;

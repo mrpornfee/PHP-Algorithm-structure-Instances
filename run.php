@@ -15,5 +15,5 @@ for($i=0;$i<999;$i++){
 $button=1;     //1：显示过程 0：否
 
 Tester::bind('hashtable\HashTableDemo',10);
-Tester::run('hashtable\HashTableDemo',[[1,'张三'],[2,'赵四'],[7,'叮当']]);
+Tester::run('hashtable\HashTableDemo',[[1,'张三'],[11,'叮当'],[21,'蔡']]);
 

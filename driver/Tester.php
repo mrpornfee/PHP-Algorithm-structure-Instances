@@ -21,19 +21,19 @@ class Tester
      * @param $arr
      * @return bool
      */
-    public static function bind($class,$arr=[])
+    public static function bind($class,$arrORsize=[])
     {
         if (is_string($class)) {
                 $class=self::$path.$class;
             if (self::$classArr == null || !array_key_exists($class, self::$classArr)) {
-                self::$classArr[$class] = new $class($arr);
+                self::$classArr[$class] = new $class($arrORsize);
             }
             return true;
         } else if (is_array($class)) {
             for ($i = 0; $i < sizeof($class); $i++) {
                 $class[$i]=self::$path.$class[$i];
                 if (self::$classArr == null || !array_key_exists($class[$i], self::$classArr)) {
-                    self::$classArr[$class[$i]] = new $class[$i]($arr);
+                    self::$classArr[$class[$i]] = new $class[$i]($arrORsize);
                 }
             }
             return true;
