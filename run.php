@@ -15,6 +15,7 @@ for($i=0;$i<999;$i++){
 $button=1;     //1：显示过程 0：否
 
 Tester::bind('tree\BinaryTreeDemo');
-Tester::run('tree\BinaryTreeDemo',[[1,'张三'],[11,'叮当'],[21,'蔡'],[15,'敖灿'],[17,'阿达']],1);
+Tester::run('tree\BinaryTreeDemo',[[1,'张三'],[11,'叮当'],[21,'蔡'],[15,'敖灿'],[17,'阿达']],2);
+Tester::find('tree\BinaryTreeDemo',[11,21],1);
 
 

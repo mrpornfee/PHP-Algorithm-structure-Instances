@@ -153,7 +153,7 @@ class Tester
                     return false;
             }
             for($i=0;$i<$t;$i++){
-                self::$classArr[$class[$i]]->find($n);
+                self::$classArr[$class[$i]]->find($n,$type);
             }
             return true;
         }

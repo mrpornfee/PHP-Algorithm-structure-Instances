@@ -8,53 +8,87 @@
 namespace algorithm\tree;
 
 class BinaryTreeDemo
-{
+{   private static $binarytree;
     public function run($arr,$type=1){
         if($arr==null){ echo '数组不能为空'; exit;}
-        $binarytree=new BinaryTree();
+        self::$binarytree=new BinaryTree();
         for($i=0;$i<sizeof($arr);$i++) {
             $no=$arr[$i][0];
+
             $name=$arr[$i][1];
             $heronode[$i] = new HeroNode($no, $name);
         }
-        $depth=1;$i=0;
-        $binarytree->setRoot($heronode[$i]);
-        while($i+1<sizeof($heronode)){
-        $heronode[$i]->setLeft($heronode[$i+1]);
-        if($i+2<sizeof($heronode)) {
-            $heronode[$i]->setRight($heronode[$i + 2]);
-        }
-        $i=pow(2,$depth)-1;
-        $depth+=1;
+        $i=0;$cur=1;
+        self::$binarytree->setRoot($heronode[$i]);
+        while($cur+1<sizeof($heronode)){
+            $heronode[$i]->setLeft($heronode[$cur]);
+            if($i+2<sizeof($heronode)) {
+                $heronode[$i]->setRight($heronode[$cur + 1]);
+            }
+            $i+=1;
+            $cur+=2;
         }
         switch ($type){
+            case 1:$typeInfo='先序遍历';
+            break;
+            case 2:$typeInfo='中序遍历';
+            break;
+            case 3:$typeInfo='后序遍历';
+            break;
+        }
+        echo "↓↓↓↓↓↓↓↓↓所有节点的{$typeInfo}：↓↓↓↓↓↓↓↓" . PHP_EOL;
+        switch ($type){
             case 1:{
-                $binarytree->preOrder();
+                self::$binarytree->preOrder();
                 break;
             }
             case 2:{
-                $binarytree->midOrder();
+                self::$binarytree->midOrder();
                 break;
             }
             case 3:{
-                $binarytree->postOrder();
+                self::$binarytree->postOrder();
                 break;
             }
         }
     }
 //查找,默认先序
-    public function find($id,$type=1){
+    public function find(array $id,$type=1){
+        switch ($type){
+            case 1:$typeInfo='先序遍历';
+                break;
+            case 2:$typeInfo='中序遍历';
+                break;
+            case 3:$typeInfo='后序遍历';
+                break;
+        }
         switch ($type){
             case 1:{
-
+                for($i=0;$i<sizeof($id);$i++) {
+                    $res[] = self::$binarytree->preOrderSearch($id[$i]);
+                }
+                break;
             }
             case 2:{
-
+                for($i=0;$i<sizeof($id);$i++) {
+                    $res[] = self::$binarytree->midOrderSearch($id[$i]);
+                }
+                break;
             }
             case 3:{
-
+                for($i=0;$i<sizeof($id);$i++) {
+                    $res[] = self::$binarytree->postOrderSearch($id[$i]);
+                }
+                break;
             }
         }
+        if($res!=null) {
+            echo "↓↓↓↓↓↓↓↓↓您要查找的节点的{$typeInfo}：↓↓↓↓↓↓↓↓" . PHP_EOL;
+            for ($i = 0; $i < sizeof($res); $i++) {
+                echo $res[$i]->toString() . PHP_EOL;
+            }
+        }
+        else echo '未查找到相应节点/(ㄒoㄒ)/~~'.PHP_EOL;
     }
 }
 //定义二叉树
