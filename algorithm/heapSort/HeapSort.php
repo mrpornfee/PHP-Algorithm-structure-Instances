@@ -18,22 +18,22 @@ class HeapSort
     }
 
     public function run($show){
+        $arr=self::$arr;
         $timeBefore=$this->getTime();
-        $this->heapSort($show);
+        $this->heapSort($arr,$show);
         $timeAfter=$this->getTime();
         echo '堆排序执行时间为'.($timeAfter-$timeBefore).'秒'.PHP_EOL;
     }
 
-    private function heapSort($show){
-        $arr=self::$arr;
+    private function heapSort(array $arr,$show){
         $n=sizeof(self::$arr);
         if($n<=1) {echo '数组大小必须大于1'.PHP_EOL;exit;}
         for($i=(int)(($n-2)/2);$i>=0;$i--){
-            $arr=$this->shiftdown($arr,$n,$i);
+            $this->shiftdown($arr,$n,$i);
         }
         for($i=$n-1;$i>=0;$i--){
-            $arr=$this->swap($arr,0,$i);
-           $arr=$this->shiftdown($arr,$i,0);
+            $this->swap($arr,0,$i);
+           $this->shiftdown($arr,$i,0);
             $this->show($arr,$show);
         }
         echo "堆排序结果为：";
@@ -45,7 +45,7 @@ class HeapSort
         self::$arr=$arr;
     }
 //大顶堆 下沉操作
-    private function shiftdown(array $arr,int $n,int $index){
+    private function shiftdown(array &$arr,int $n,int $index){
         while(($index*2+1)<$n){
             $i=$index*2+1;
             if($i+1<$n){
@@ -54,17 +54,15 @@ class HeapSort
                 }
             }
             if($arr[$index]>$arr[$i]) return $arr;
-              $arr=$this->swap($arr,$index,$i);
+              $this->swap($arr,$index,$i);
             $index=$i;
         }
-        return $arr;
     }
 
-    private function swap(array $arr,$p1,$p2){
+    private function swap(array &$arr,$p1,$p2){
         $temp=$arr[$p2];
         $arr[$p2]=$arr[$p1];
         $arr[$p1]=$temp;
-        return $arr;
     }
 
     private function show(array $arr,$show=1){
