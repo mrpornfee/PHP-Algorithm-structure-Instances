@@ -9,13 +9,12 @@ $method=$class->getMethod('main');
 $method->invoke($instance);*/
 //========================================================================
 
-for($i=0;$i<999;$i++){
-    $arr[$i]=$i;
+for($i=0;$i<6;$i++){
+    $arr[$i]=rand(0,9999);
 }
-$button=1;     //1：显示过程 0：否
+$button=0;     //1：显示过程 0：否
+Tester::bind('heapSort\HeapSort',$arr);
+Tester::sort('heapSort\HeapSort',$button);
 
-Tester::bind('tree\BinaryTreeDemo');
-Tester::run('tree\BinaryTreeDemo',[[1,'张三'],[11,'叮当'],[21,'蔡'],[15,'敖灿'],[17,'阿达']],2);
-Tester::find('tree\BinaryTreeDemo',[11,21],1);
 
 
