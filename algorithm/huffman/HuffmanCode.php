@@ -7,10 +7,17 @@
  */
 namespace algorithm\huffman;
 class HuffmanCode
-{
+{   //分割统计后的字符对象的存储数组
     private static $nodesArr=[];
 
+    //经过哈夫曼编码后的字符存储数组
+    private static $huffmanNodes=[];
+
+    //用户输入字符串
     private static $str;
+    //01形式字符串
+    private static $strcode;
+
 
     public function __construct(String $str)
     {
@@ -29,16 +36,80 @@ class HuffmanCode
             }
     }
 
-    public function run(){
+    private function makeHuffmanNodes(array $codes){
+        for($i=0;$i<sizeof($codes);$i++){
+            self::$huffmanNodes[$codes[$i]->data]=$codes[$i]->code;
+        }
+    }
+
+    private function explainString(){
+            $arr=str_split(self::$str);
+            $codes=self::$huffmanNodes;
+            for($i=0;$i<sizeof($arr);$i++){
+                    foreach ($codes as $k => $v){
+                    if($arr[$i]==$k){
+                        $arr[$i]=$v;
+                    }
+                }
+            }
+            self::$strcode=implode('',$arr);
+    }
+
+    public function getHuffmanNodes(){
+        return self::$huffmanNodes;
+    }
+
+    public function run($show=1){
         $res=$this->getCharNum();
         $this->createNodes($res);
         $HT= new HuffmanTree(self::$nodesArr);
         $HT->makeTree();
         $codes=$HT->setAndGetCodes();
-        var_dump($codes);
+        $this->makeHuffmanNodes($codes);
+        if($show) var_dump($this->getHuffmanNodes());
+        return 0;
+    }
+ //压缩
+    public function compress(){
+        if(!self::$huffmanNodes)
+            $this->run(0);
+        $this->explainString();
+        echo '压缩成功'.PHP_EOL;
+        return json_encode(['huffmanCodes'=>self::$huffmanNodes,'data'=>self::$strcode]);
     }
 
 
+
+ //解压缩
+    public function decompress(string $str){
+            $arr=json_decode($str,true);
+            $huffmanCodes=$arr['huffmanCodes'];
+            $data=$arr['data'];
+            foreach ($huffmanCodes as $k=>$v){
+                $sizeCodes[$k]=strlen($v);
+            }
+            arsort($sizeCodes);
+            $arrTmp=array_values($sizeCodes);
+            $maxlength=$arrTmp[0];
+            $s=0;//截取位
+            $i=1; //长度
+            $resultString='';
+            while($s<strlen($data)){
+                if($i>$maxlength) {echo '解压失败'.PHP_EOL; exit;}
+                $tmpstr=substr($data,$s,$i);
+                foreach ($huffmanCodes as $k =>$v){
+                    if($tmpstr===$v){
+                        $resultString.=$k;
+                        $s+=$i;
+                        $i=1;
+                        break;
+                    }
+                }
+                $i++;
+            }
+            echo '解压成功'.PHP_EOL;
+            return $resultString;
+    }
 }
 
 class HuffmanTree{
@@ -109,6 +180,3 @@ class TreeNode{
     }
 
 }
-
-$A=new HuffmanCode('AAAAAAABBBCCCC');
-$A->run();

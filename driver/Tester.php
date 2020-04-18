@@ -160,4 +160,19 @@ class Tester
         return false;
     }
 
+    public static function __callStatic($name, $arguments)
+    {
+        // TODO: Implement __callStatic() method.
+        if(self::$classArr==null) return false;
+        if(is_string($arguments[0])){
+            $class=self::$path.$arguments[0];
+            if(array_key_exists($class,self::$classArr)){
+                $res=self::$classArr[$class]->$name(isset($arguments[1])?$arguments[1]:null,isset($arguments[2])?$arguments[2]:null);
+                return $res;
+            }
+            return false;
+        }
+        return false;
+    }
+
 }
